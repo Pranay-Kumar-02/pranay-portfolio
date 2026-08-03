@@ -532,9 +532,256 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.classList.remove('modal-open', 'cmd-open', 'term-open');
         modal.setAttribute('aria-hidden', 'true');
       });
+      const themeMenu = document.getElementById('themeMenu');
+      if (themeMenu) {
+        themeMenu.classList.add('hidden');
+        themeMenu.setAttribute('aria-hidden', 'true');
+      }
       document.body.style.overflow = '';
     }
   });
+
+  /**
+   * 11. Multi-Theme Engine Manager
+   */
+  const themePickerBtn = document.getElementById('themePickerBtn');
+  const themeMenu = document.getElementById('themeMenu');
+  const themeOptionBtns = document.querySelectorAll('.theme-option-btn');
+  const themeActiveIcon = document.getElementById('themeActiveIcon');
+  const themeQuickToggleHeader = document.getElementById('themeQuickToggleHeader');
+  const themeHeaderToggleText = document.getElementById('themeHeaderToggleText');
+
+  let currentTheme = localStorage.getItem('portfolio_theme') || 
+    (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark-slate');
+
+  const themeIconsMap = {
+    'light': '☀️',
+    'dark-slate': '🌙',
+    'obsidian': '🌌',
+    'emerald': '🌲',
+    'cobalt': '💎',
+    'warm-gold': '👑'
+  };
+
+  function applyTheme(themeId) {
+    currentTheme = themeId;
+    root.setAttribute('data-theme', themeId);
+    localStorage.setItem('portfolio_theme', themeId);
+
+    // Update active state in theme menu
+    themeOptionBtns.forEach(btn => {
+      if (btn.dataset.themeId === themeId) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+
+    // Update icon on the nav theme select button
+    if (themeActiveIcon) {
+      themeActiveIcon.textContent = themeIconsMap[themeId] || '🎨';
+    }
+
+    // Update Header quick toggle button text
+    if (themeHeaderToggleText) {
+      if (themeId === 'light') {
+        themeHeaderToggleText.textContent = '🌙 Dark';
+      } else {
+        themeHeaderToggleText.textContent = '☀️ Light';
+      }
+    }
+
+    // Refresh Canvas Particle Colors
+    if (window.updateParticleColors) {
+      window.updateParticleColors();
+    }
+  }
+
+  // Initialize saved or default theme
+  applyTheme(currentTheme);
+
+  // Quick Toggle in Header Handler (Switches Light <-> Dark Slate / Last active dark theme)
+  if (themeQuickToggleHeader) {
+    themeQuickToggleHeader.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (currentTheme === 'light') {
+        const lastDark = localStorage.getItem('portfolio_dark_theme') || 'dark-slate';
+        applyTheme(lastDark);
+      } else {
+        localStorage.setItem('portfolio_dark_theme', currentTheme);
+        applyTheme('light');
+      }
+    });
+  }
+
+  // Popover Menu Handler
+  if (themePickerBtn && themeMenu) {
+    themePickerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isHidden = themeMenu.classList.contains('hidden');
+      if (isHidden) {
+        themeMenu.classList.remove('hidden');
+        themeMenu.setAttribute('aria-hidden', 'false');
+      } else {
+        themeMenu.classList.add('hidden');
+        themeMenu.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    themeOptionBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const selected = btn.dataset.themeId;
+        if (selected) {
+          applyTheme(selected);
+          themeMenu.classList.add('hidden');
+          themeMenu.setAttribute('aria-hidden', 'true');
+        }
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!themeMenu.contains(e.target) && e.target !== themePickerBtn) {
+        themeMenu.classList.add('hidden');
+        themeMenu.setAttribute('aria-hidden', 'true');
+      }
+    });
+  }
+
+  /**
+   * 12. Interactive Background Particle Canvas Engine
+   */
+  function initParticleCanvas() {
+    const canvas = document.getElementById('particleCanvas');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    let particleColor = 'rgba(99, 102, 241, 0.35)';
+    let lineColor = 'rgba(99, 102, 241, 0.15)';
+
+    window.updateParticleColors = function() {
+      const style = getComputedStyle(document.documentElement);
+      particleColor = style.getPropertyValue('--particle-color').trim() || 'rgba(99, 102, 241, 0.35)';
+      lineColor = style.getPropertyValue('--particle-line-color').trim() || 'rgba(99, 102, 241, 0.15)';
+    };
+    window.updateParticleColors();
+
+    let mouseX = -1000;
+    let mouseY = -1000;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    }, { passive: true });
+
+    window.addEventListener('mouseleave', () => {
+      mouseX = -1000;
+      mouseY = -1000;
+    });
+
+    const particleCount = Math.min(65, Math.floor((width * height) / 18000));
+    const particles = [];
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+
+      reset() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.45;
+        this.vy = (Math.random() - 0.5) * 0.45;
+        this.radius = Math.random() * 1.6 + 1.0;
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        if (this.x < 0) this.x = width;
+        if (this.x > width) this.x = 0;
+        if (this.y < 0) this.y = height;
+        if (this.y > height) this.y = 0;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = particleColor;
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', resize);
+
+    function animate() {
+      if (document.hidden || prefersReducedMotion) {
+        requestAnimationFrame(animate);
+        return;
+      }
+
+      ctx.clearRect(0, 0, width, height);
+
+      // Render Particles & Inter-particle Connections
+      for (let i = 0; i < particles.length; i++) {
+        const p1 = particles[i];
+        p1.update();
+        p1.draw();
+
+        // Connect nearby particles
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 115) {
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = lineColor;
+            ctx.lineWidth = 0.8 * (1 - dist / 115);
+            ctx.stroke();
+          }
+        }
+
+        // Connect to mouse cursor
+        if (mouseX > 0 && mouseY > 0) {
+          const mdx = p1.x - mouseX;
+          const mdy = p1.y - mouseY;
+          const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+
+          if (mdist < 140) {
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(mouseX, mouseY);
+            ctx.strokeStyle = lineColor;
+            ctx.lineWidth = 1.2 * (1 - mdist / 140);
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  }
+
+  initParticleCanvas();
 
   // Attach Event Listeners
   window.addEventListener('mousemove', onMouseMove, { passive: true });

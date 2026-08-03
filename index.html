@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Fixed Interactive Background Particle Canvas -->
+  <canvas id="particleCanvas"></canvas>
 
   <!-- Floating Smart Glass Navigation Header -->
   <header class="nav-header" id="navHeader">
@@ -39,9 +41,74 @@
         <!-- Desktop-Style Refined Glass Search Pill -->
         <button id="cmdTrigger" class="btn-nav-cmd" title="Command Palette (Ctrl + K)">
           <span class="cmd-search-icon">🔍</span>
-          <span class="cmd-search-label">Search platform...</span>
+          <span class="cmd-search-label">Search</span>
           <span class="cmd-shortcut-hint">Ctrl K</span>
         </button>
+
+        <!-- Unified Premium Theme Palette Button -->
+        <div class="theme-picker-wrapper">
+          <button id="themePickerBtn" class="btn-nav-theme-select" title="Change Theme Palette" aria-label="Change Theme Palette">
+            <span class="theme-active-icon" id="themeActiveIcon">🎨</span>
+            <span class="theme-btn-label">Theme</span>
+            <span class="theme-btn-chevron">▾</span>
+          </button>
+
+          <div id="themeMenu" class="theme-menu-popover hidden" aria-hidden="true">
+            <div class="theme-menu-header">
+              <div class="theme-menu-title-group">
+                <span class="theme-menu-title">Select Theme</span>
+                <span class="theme-menu-subtitle">6 Executive Palettes</span>
+              </div>
+              <button id="themeQuickToggleHeader" class="theme-header-toggle" title="Quick Light/Dark Mode Switch">
+                <span id="themeHeaderToggleText">☀️ Light</span>
+              </button>
+            </div>
+            <div class="theme-options-grid">
+              <button class="theme-option-btn" data-theme-id="light">
+                <span class="theme-swatch swatch-light"></span>
+                <div class="theme-info">
+                  <span class="theme-name">Light Studio</span>
+                  <span class="theme-desc">Clean White & Slate</span>
+                </div>
+              </button>
+              <button class="theme-option-btn" data-theme-id="dark-slate">
+                <span class="theme-swatch swatch-dark-slate"></span>
+                <div class="theme-info">
+                  <span class="theme-name">Dark Slate</span>
+                  <span class="theme-desc">Modern Slate & Indigo</span>
+                </div>
+              </button>
+              <button class="theme-option-btn" data-theme-id="obsidian">
+                <span class="theme-swatch swatch-obsidian"></span>
+                <div class="theme-info">
+                  <span class="theme-name">Midnight Obsidian</span>
+                  <span class="theme-desc">Deep Black & Violet</span>
+                </div>
+              </button>
+              <button class="theme-option-btn" data-theme-id="emerald">
+                <span class="theme-swatch swatch-emerald"></span>
+                <div class="theme-info">
+                  <span class="theme-name">Nordic Emerald</span>
+                  <span class="theme-desc">Tech Teal & Mint</span>
+                </div>
+              </button>
+              <button class="theme-option-btn" data-theme-id="cobalt">
+                <span class="theme-swatch swatch-cobalt"></span>
+                <div class="theme-info">
+                  <span class="theme-name">Royal Cobalt</span>
+                  <span class="theme-desc">Sapphire & Electric Blue</span>
+                </div>
+              </button>
+              <button class="theme-option-btn" data-theme-id="warm-gold">
+                <span class="theme-swatch swatch-warm-gold"></span>
+                <div class="theme-info">
+                  <span class="theme-name">Executive Gold</span>
+                  <span class="theme-desc">Charcoal & Warm Gold</span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
 
         <button id="recruiterToggle" class="btn-nav-mode" title="Toggle High-Speed Recruiter Mode">
           <span class="mode-icon">⚡</span>
