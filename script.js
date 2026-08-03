@@ -57,8 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const normalizedX = (e.clientX / windowWidth) - 0.5;
     const normalizedY = (e.clientY / windowHeight) - 0.5;
 
-    targetTiltX = -normalizedY * 3.0;
-    targetTiltY = normalizedX * 3.0;
+    targetTiltX = -normalizedY * 1.0;
+    targetTiltY = normalizedX * 1.0;
   }
 
   /**

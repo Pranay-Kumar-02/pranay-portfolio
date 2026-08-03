@@ -834,6 +834,61 @@ html[data-theme="light"] .theme-option-btn:hover {
   font-size: 1rem;
 }
 
+/* Step 5 in Visual Hierarchy: Engineering Focus Matrix */
+.hero-focus-matrix {
+  margin-top: calc(var(--space-md) + 8px);
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+  animation: fadeSlideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.95s forwards;
+}
+
+.focus-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.focus-pills-row {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.hero-focus-pill {
+  font-size: 0.78125rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glass-border);
+  padding: 0.3rem 0.8rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.3s ease;
+}
+
+.hero-focus-pill:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--glass-border-hover);
+  color: var(--text-primary);
+}
+
+.focus-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-indigo);
+  display: inline-block;
+  box-shadow: 0 0 6px var(--accent-indigo);
+}
+
+/* Hero Right: Refined Portrait Stage & Floating Engineering Context */
 .hero-right {
   display: flex;
   justify-content: center;
@@ -843,31 +898,120 @@ html[data-theme="light"] .theme-option-btn:hover {
   animation: fadeSlideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
 }
 
+.hero-portrait-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.2rem 2rem;
+}
+
+/* Floating Glass Engineering Context Cards */
+.hero-float-card {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.6rem 0.95rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.35);
+  z-index: 15;
+  pointer-events: auto;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.hero-float-card:hover {
+  border-color: var(--glass-border-hover);
+  transform: scale(1.03) translateY(-2px);
+  box-shadow: 0 16px 36px -4px rgba(0, 0, 0, 0.45);
+}
+
+.card-academic {
+  top: 0px;
+  left: -28px;
+  animation: cardFloat1 5.5s ease-in-out infinite;
+}
+
+.card-building {
+  bottom: -10px;
+  right: -24px;
+  animation: cardFloat2 6.5s ease-in-out 1s infinite;
+}
+
+.float-card-icon {
+  font-size: 1rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.float-card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.float-card-title {
+  font-size: 0.78125rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.float-card-sub {
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* Floating Keyframes */
+@keyframes cardFloat1 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes cardFloat2 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes subtleBreath {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+}
+
+/* Premium Editorial Portrait Frame (35% Reduced Visual Scale) */
 .editorial-portrait-frame {
   position: relative;
   width: 100%;
-  max-width: 440px;
-  height: 540px;
-  border-radius: 24px;
+  width: 275px;
+  height: 350px;
+  border-radius: 28px;
   overflow: hidden;
   background-color: var(--bg-surface);
   border: 1px solid var(--glass-border);
-  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.15);
   transform-style: preserve-3d;
   transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
   transition: transform 0.1s ease-out, border-color 0.4s ease;
+  animation: subtleBreath 6s ease-in-out infinite;
   will-change: transform;
 }
 
 .editorial-portrait-frame:hover { border-color: var(--glass-border-hover); }
 
+/* Reduced AI-Generated Appearance: Matte, Natural Shadow & Soft Warm Tone */
 .portrait-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 18%;
+  object-position: center 15%;
   display: block;
-  filter: brightness(0.95) contrast(1.03);
+  filter: contrast(0.94) saturate(0.92) brightness(0.97) sepia(0.03);
+  transition: filter 0.5s ease;
 }
 
 .portrait-glass-overlay {
@@ -875,18 +1019,25 @@ html[data-theme="light"] .theme-option-btn:hover {
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(5, 6, 8, 0.7) 0%,
+    rgba(5, 6, 8, 0.5) 0%,
     transparent 50%
   );
+  pointer-events: none;
+}
+
+.portrait-cinematic-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 40%, transparent 45%, rgba(5, 6, 8, 0.4) 100%);
   pointer-events: none;
 }
 
 .portrait-ambient-glow {
   position: absolute;
   inset: -1px;
-  border-radius: 24px;
+  border-radius: 28px;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), transparent 60%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), transparent 60%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -2268,8 +2419,10 @@ a.contact-detail-item:hover { color: var(--text-primary); }
   .hero-container { padding: 0 var(--padding-tablet); }
   .hero-grid { grid-template-columns: 1fr; gap: var(--space-lg); text-align: center; }
   .hero-left { align-items: center; text-align: center; }
-  .hero-right { order: -1; margin-bottom: 1rem; }
-  .editorial-portrait-frame { height: 420px; max-width: 360px; }
+  .hero-right { order: 2; margin-top: 1.5rem; justify-content: center; width: 100%; }
+  .editorial-portrait-frame { height: 320px; width: 250px; margin: 0 auto; }
+  .card-academic { top: -10px; left: -10px; }
+  .card-building { bottom: -10px; right: -10px; }
   .story-grid { grid-template-columns: 1fr; gap: 2rem; }
   .skills-grid-8 { grid-template-columns: 1fr; gap: 1.5rem; }
   .product-grid { grid-template-columns: 1fr; gap: 2rem; }
@@ -2292,11 +2445,15 @@ a.contact-detail-item:hover { color: var(--text-primary); }
   .hero-actions { width: 100%; flex-direction: column; gap: 0.75rem; }
   .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
 
+  .hero-right { order: 2; margin-top: 2rem; justify-content: center; width: 100%; }
+  .hero-portrait-stage { padding: 1rem 0; width: 100%; }
+  .editorial-portrait-frame { height: 270px; width: 210px; border-radius: 24px; margin: 0 auto; }
+  .hero-float-card { display: none; } /* Clean presentation on mobile to prevent clutter */
+  .focus-pills-row { justify-content: center; }
+
   .chapter-section { padding: 3.5rem 1.25rem; }
   .chapter-title { font-size: clamp(1.85rem, 6vw, 2.35rem); }
   .chapter-lead { font-size: 1rem; }
-  
-  .editorial-portrait-frame { height: 350px; max-width: 290px; }
   
   .skill-domain-card { padding: 1.5rem; }
   .product-showcase-card { padding: 1.5rem; border-radius: 20px; }

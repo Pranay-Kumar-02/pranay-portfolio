@@ -132,6 +132,7 @@
     <div class="hero-container">
       <div class="hero-grid">
         
+        <!-- Left: Primary Visual Anchor (Hierarchy: Name -> Headline -> Intro -> CTA -> Engineering Focus) -->
         <div class="hero-left">
           <div class="hero-tag">
             <span class="tag-accent">//</span>
@@ -155,18 +156,53 @@
               <span>Download Resume</span>
             </a>
           </div>
+
+          <!-- Step 5 in Visual Hierarchy: Engineering Focus -->
+          <div class="hero-focus-matrix">
+            <span class="focus-label">CORE DOMAINS</span>
+            <div class="focus-pills-row">
+              <span class="hero-focus-pill"><span class="focus-dot"></span>AI Engineering</span>
+              <span class="hero-focus-pill"><span class="focus-dot"></span>Cybersecurity</span>
+              <span class="hero-focus-pill"><span class="focus-dot"></span>Full-Stack Development</span>
+            </div>
+          </div>
         </div>
 
+        <!-- Right: Step 6 in Visual Hierarchy (Refined 35% Scale Portrait & Floating Glass Cards) -->
         <div class="hero-right">
-          <div class="editorial-portrait-frame" id="portraitFrame">
-            <img 
-              src="Me! Professional!.jpeg" 
-              alt="Pranay Kumar Vonamala Editorial Portrait" 
-              class="portrait-image"
-              id="portraitImage"
-            >
-            <div class="portrait-glass-overlay"></div>
-            <div class="portrait-ambient-glow"></div>
+          <div class="hero-portrait-stage">
+
+            <!-- Floating Glass Context Card 1: Academic Focus -->
+            <div class="hero-float-card card-academic">
+              <span class="float-card-icon">🎓</span>
+              <div class="float-card-content">
+                <span class="float-card-title">VIT Vellore</span>
+                <span class="float-card-sub">B.Tech CSE (InfoSec) · CGPA 8.27</span>
+              </div>
+            </div>
+
+            <!-- Floating Glass Context Card 2: Active Projects -->
+            <div class="hero-float-card card-building">
+              <span class="float-card-icon">⚡</span>
+              <div class="float-card-content">
+                <span class="float-card-title">Currently Building</span>
+                <span class="float-card-sub">Spendly · Sentinel AI · SupportFlow AI</span>
+              </div>
+            </div>
+
+            <!-- Premium Editorial Portrait Frame (35% Reduced Visual Scale) -->
+            <div class="editorial-portrait-frame" id="portraitFrame">
+              <img 
+                src="Me! Professional!.jpeg" 
+                alt="Pranay Kumar Vonamala Editorial Portrait" 
+                class="portrait-image"
+                id="portraitImage"
+              >
+              <div class="portrait-glass-overlay"></div>
+              <div class="portrait-cinematic-vignette"></div>
+              <div class="portrait-ambient-glow"></div>
+            </div>
+
           </div>
         </div>
 
