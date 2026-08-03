@@ -483,24 +483,30 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   function getAiKnowledgeResponse(q) {
-    if (q.includes('spendly') || q.includes('finance')) {
-      return 'Spendly is an AI-powered personal finance platform I built to help users track expenses, analyze spending habits, and receive intelligent financial recommendations. The application combines React, Firebase, FastAPI, and OpenRouter AI insights to create a smarter budgeting experience.';
-    } else if (q.includes('sentinel') || q.includes('cyber') || q.includes('security') || q.includes('cti')) {
-      return 'Sentinel AI is India’s AI-powered Cyber Threat Intelligence (CTI) platform I architected to aggregate raw threat feeds, automate OSINT recon (VirusTotal, WHOIS, Google Safe Browsing), and present explainable AI threat scoring for rapid incident triage.';
-    } else if (q.includes('supportflow') || q.includes('agent') || q.includes('langgraph') || q.includes('ollama')) {
-      return 'SupportFlow AI is an enterprise Agentic AI platform I engineered using LangChain, LangGraph stateful graph orchestration, and Ollama local LLMs. It executes multi-step reasoning, persistent memory, and dynamic tool calling with zero data leakage.';
-    } else if (q.includes('who') || q.includes('pranay') || q.includes('about') || q.includes('background')) {
-      return 'I am Pranay Kumar Vonamala, a 3rd-year Computer Science Engineering student specializing in Information Security at VIT Vellore (CGPA 8.27). Based in Hyderabad, I am passionate about building software products across AI, Cybersecurity, and Full-Stack development.';
-    } else if (q.includes('cgpa') || q.includes('grade') || q.includes('vit') || q.includes('college') || q.includes('education')) {
-      return 'I am currently pursuing my B.Tech in Computer Science Engineering (Information Security) at Vellore Institute of Technology (VIT), Vellore, maintaining a CGPA of 8.27 with expected graduation in 2028.';
-    } else if (q.includes('contact') || q.includes('email') || q.includes('phone') || q.includes('reach')) {
-      return 'You can reach me directly via email at vonamala.pranay.official@gmail.com or vonamala.pranay@gmail.com, or call me at +91 6301905015. I am always open to conversations about software engineering internships and AI research roles.';
-    } else if (q.includes('skills') || q.includes('tech') || q.includes('stack')) {
-      return 'My core stack is organized into 8 domains: AI & LLMs (LangChain, LangGraph, Ollama), Frontend (React, CSS), Backend (Python, FastAPI), Languages (C++, Python, Java, JS), Databases (Firestore, SQL), Tools (Git, Linux, Vercel), Core CS (DS & Algo), and Cybersecurity (CTI, OSINT).';
-    } else if (q.includes('certif')) {
-      return 'I hold verified certifications from IBM SkillsBuild (Cybersecurity Fundamentals), Deloitte (Cyber Job Simulation), Infosys Springboard (AI & Data Science), and IIT Madras (Cyber Ninjas with Ethical Hacking).';
+    if (q.includes('spendly') || q.includes('finance') || q.includes('budget')) {
+      return 'Spendly is an AI-powered personal finance platform built with React, FastAPI, Firebase, and OpenRouter AI insights. It provides real-time expense tracking, automated budget allocation, cash flow analytics, and smart AI financial reports with sub-100ms chart rendering.';
+    } else if (q.includes('sentinel') || q.includes('cyber') || q.includes('security') || q.includes('cti') || q.includes('osint') || q.includes('threat')) {
+      return 'Sentinel AI is India’s AI-powered Cyber Threat Intelligence (CTI) platform architected by Pranay. It aggregates raw threat feeds, automates OSINT recon (VirusTotal API, WHOIS, Google Safe Browsing), and presents explainable AI threat diagnostics for rapid SOC incident triage.';
+    } else if (q.includes('supportflow') || q.includes('agent') || q.includes('langgraph') || q.includes('ollama') || q.includes('rag') || q.includes('local llm')) {
+      return 'SupportFlow AI is an enterprise Agentic AI platform engineered with LangChain, LangGraph stateful multi-agent graphs, and Ollama local LLMs. It executes multi-step reasoning, persistent memory nodes, dynamic tool calling, and RAG pipelines with zero data leakage.';
+    } else if (q.includes('who') || q.includes('pranay') || q.includes('about') || q.includes('background') || q.includes('bio')) {
+      return 'Pranay Kumar Vonamala is a 3rd-year Computer Science Engineering student specializing in Information Security at VIT Vellore (CGPA 8.27). Based in Hyderabad, India, he builds software across AI Engineering, Cybersecurity, and Full-Stack development with a focus on performance and craftsmanship.';
+    } else if (q.includes('cgpa') || q.includes('grade') || q.includes('vit') || q.includes('vellore') || q.includes('college') || q.includes('education') || q.includes('degree')) {
+      return 'Pranay is currently pursuing his B.Tech in Computer Science & Engineering (Information Security) at Vellore Institute of Technology (VIT), Vellore. He maintains a CGPA of 8.27 with expected graduation in 2028.';
+    } else if (q.includes('contact') || q.includes('email') || q.includes('phone') || q.includes('reach') || q.includes('hire') || q.includes('job') || q.includes('internship')) {
+      return 'You can contact Pranay directly via email at vonamala.pranay.official@gmail.com / vonamala.pranay@gmail.com, or phone at +91 6301905015. He is actively open to Software Engineering, AI, and Cybersecurity internship opportunities!';
+    } else if (q.includes('leetcode') || q.includes('algo') || q.includes('dsa') || q.includes('problem')) {
+      return 'Pranay has solved 500+ algorithmic problems on LeetCode (@Pranayyy_), demonstrating strong proficiency in Data Structures & Algorithms, Dynamic Programming, Graph Theory, and C++ Standard Template Library (STL).';
+    } else if (q.includes('certif') || q.includes('ibm') || q.includes('deloitte') || q.includes('infosys') || q.includes('iit')) {
+      return 'Pranay holds 4 verified industry credentials: 1) IBM SkillsBuild - Cybersecurity Fundamentals, 2) Deloitte - Cyber Job Simulation, 3) Infosys Springboard - AI & Data Science, 4) IIT Madras - Cyber Ninjas & Ethical Hacking.';
+    } else if (q.includes('gym') || q.includes('workout') || q.includes('fitness') || q.includes('discipline') || q.includes('health')) {
+      return 'Outside of software engineering, Pranay maintains a dedicated gym and strength training routine. He believes the consistency, focus, and grit developed in athletics directly translate into writing clean code, solving complex security challenges, and crafting reliable software.';
+    } else if (q.includes('skills') || q.includes('tech') || q.includes('stack') || q.includes('language') || q.includes('python') || q.includes('react') || q.includes('cpp')) {
+      return 'Pranay’s technical stack spans 8 core domains: AI & LLMs (LangChain, LangGraph, Ollama), Frontend (React, HTML5/CSS3, JS), Backend (Python, FastAPI), Languages (C++, Python, Java, JS, SQL), Databases (Firestore, SQL), Tools (Git, Linux, Vercel), Core CS (DSA, OS, DBMS), and Cybersecurity (CTI, OSINT, Forensics).';
+    } else if (q.includes('philosophy') || q.includes('craft') || q.includes('mindset') || q.includes('principle')) {
+      return 'Pranay’s engineering philosophy rests on 5 principles: 1) Solve real problems before writing code, 2) Keep software modular & maintainable, 3) Prioritize 60 FPS simplicity & performance, 4) Continuous learning through building, 5) Artificial Intelligence should assist & empower human intellect.';
     } else {
-      return 'I am a 3rd-year CS & InfoSec student at VIT Vellore (CGPA 8.27) passionate about building AI, security, and full-stack software. Feel free to ask about Spendly, Sentinel AI, SupportFlow AI, or my contact info!';
+      return 'I am Pranay\'s AI Portfolio Assistant! Ask me about Spendly, Sentinel AI, SupportFlow AI, his 8.27 CGPA at VIT Vellore, 500+ LeetCode stats, verified IBM/Deloitte certifications, gym discipline, or contact info at vonamala.pranay.official@gmail.com.';
     }
   }
 
